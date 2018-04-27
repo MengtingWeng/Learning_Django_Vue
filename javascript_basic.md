@@ -143,9 +143,38 @@ alert(age); // NaN, conversion failed
 ```
 * `Number(num)` convert other type into number
 *  Numeric conversion rules:
+
+
 | value | becomes |
 | --- | --- |
 | undefined | NaN |
 | null | 0 |
 | true or false | 1 or 0 |
 | string | Whitespaces from the start and the end are removed. Then, if the remaining string is empty, the result is 0. Otherwise, the number is “read” from the string. An error gives NaN|
+
+```
+alert( Number("   123   ") ); // 123
+alert( Number("123z") );      // NaN (error reading a number at "z")
+alert( Number(true) );        // 1
+alert( Number(false) );       // 0
+```
+
+### ToBoolean
+```
+alert( Boolean(1) ); // true
+alert( Boolean(0) ); // false
+
+alert( Boolean("hello") ); // true
+alert( Boolean("") ); // false
+```
+* Values that are intuitively “empty”, like 0, an empty string, null, undefined and NaN become false.
+* Other values become true.
+
+## Operator, exponentiation
+```
+alert( 2 ** 2 ); // 4  (2 * 2)
+alert( 2 ** 3 ); // 8  (2 * 2 * 2)
+alert( 2 ** 4 ); // 16 (2 * 2 * 2 * 2)
+```
+## Comparison
+### between different types
