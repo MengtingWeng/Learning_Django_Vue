@@ -117,3 +117,35 @@ typeof alert // "function"  (3)
 typeof 123
 typeof(123)
 ```
+## Type conversions
+### ToString
+```
+let value = true;
+alert(typeof value); // boolean
+
+value = String(value); // now value is a string "true"
+alert(typeof value); // string
+```
+* `String(value)` to convert other type into string
+* `alert()` just automatically converts any value to a string
+
+### ToNumber
+```
+alert( "6" / "2" ); // 3, strings are converted to numbers
+
+let str = "123";
+alert(typeof str); // string
+let num = Number(str); // becomes a number 123
+alert(typeof num); // number
+
+let age = Number("an arbitrary string instead of a number");
+alert(age); // NaN, conversion failed
+```
+* `Number(num)` convert other type into number
+*  Numeric conversion rules:
+| value | becomes |
+| --- | --- |
+| undefined | NaN |
+| null | 0 |
+| true or false | 1 or 0 |
+| string | Whitespaces from the start and the end are removed. Then, if the remaining string is empty, the result is 0. Otherwise, the number is “read” from the string. An error gives NaN|
