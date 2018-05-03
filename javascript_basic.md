@@ -178,3 +178,159 @@ alert( 2 ** 4 ); // 16 (2 * 2 * 2 * 2)
 ```
 ## Comparison
 ### between different types
+```
+alert( '2' > 1 ); // true, string '2' becomes a number 2
+alert( '01' == 1 ); // true, string '01' becomes a number 1
+```
+```
+alert( true == 1 ); // true
+alert( false == 0 ); // true
+```
+```
+let a = 0;
+alert( Boolean(a) ); // false
+
+let b = "0";
+alert( Boolean(b) ); // true
+
+alert(a == b); // true!
+```
+* A regular equality check `==` has a problem. It cannot diff `0` from `false` or empty string, so we can use a strict equality operator `===` checks the equality without type conversion.
+
+### between null and undefined
+```
+alert( null === undefined ); // false
+alert( null == undefined ); // true
+```
+```
+alert( null > 0 );  // (1) false
+alert( null == 0 ); // (2) false
+alert( null >= 0 ); // (3) true
+```
+* Check `==` and comparisons `> < >= <=` work differently. Comparisons convert `null` to a number, hence treat it as 0.
+```
+alert( undefined > 0 ); // false (1)
+alert( undefined < 0 ); // false (2)
+alert( undefined == 0 ); // false (3)
+```
+* Comparisons (1) and (2) return `false` because `undefined` gets converted to `NaN` And `NaN` is a special numeric value which returns `false` for all comparisons.
+* The equality check (3) returns `false`, because `undefined` only equals `null` and no other value.
+
+## Function
+### Function declaration
+```
+function sayHi() {
+  alert( "Hello" );
+}
+```
+### Function Expression
+```
+let sayHi = function() {
+  alert( "Hello" );
+};
+```
+* Notice that for function expression, we have the semicolon. However, for the function declaration, we do not have that.
+* A Function Expression is created when the execution reaches it and is usable from then on.
+* A Function Declaration is usable in the whole script/code block.
+* When a Function Declaration is made within a code block, it is visible everywhere inside that block. But not outside of it.
+```
+let age = prompt("What is your age?", 18);
+
+// conditionally declare a function
+if (age < 18) {
+
+  function welcome() {
+    alert("Hello!");
+  }
+
+} else {
+
+  function welcome() {
+    alert("Greetings!");
+  }
+
+}
+
+// ...use it later
+welcome(); // Error: welcome is not defined
+```
+So this is the time to use the function expression
+```
+let age = prompt("What is your age?", 18);
+
+let welcome;
+
+if (age < 18) {
+
+  welcome = function() {
+    alert("Hello!");
+  };
+
+} else {
+
+  welcome = function() {
+    alert("Greetings!");
+  };
+
+}
+
+welcome(); // ok now
+```
+To simplify it, we can write as bellow:
+```
+let age = prompt("What is your age?", 18);
+
+let welcome = (age < 18) ?
+  function() { alert("Hello!"); } :
+  function() { alert("Greetings!"); };
+
+welcome(); // ok now
+```
+### Arrow function
+```
+let func = (arg1, arg2, ...argN) => expression
+```
+It is equally to:
+```
+let func = function(arg1, arg2, ...argN) {
+  return expression;
+}
+```
+For example:
+```
+let sum = (a, b) => a + b;
+//Above line equals to:
+let sum = function(a, b) {
+  return a + b;
+}
+alert(sum(1,2));
+```
+If we only have one argument, then we can omit the parentheses:
+```
+let double = n => n * 2;
+alert(doublt(3)); // 6
+```
+If there are no arguments, parentheses should be empty(but they should be present):
+```
+let sayHi = () => alert("Hello!");
+sayHi();
+```
+Example:
+```
+let age = prompt("What is your age?", 18);
+
+let welcome = (age < 18) ?
+  () => alert('Hello') :
+  () => alert("Greetings!");
+
+welcome(); // ok now
+```
+If there are multilines for expression, we can use `{}` to enclose them.
+```
+let sum = (a, b) => {  // the curly brace opens a multiline function
+  let result = a + b;
+  return result; // if we use curly braces, use return to get results
+};
+
+alert( sum(1, 2) ); // 3
+```
