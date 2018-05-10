@@ -375,4 +375,96 @@ Fortunately, we can reset the entire box model and specify a new one: `border-bo
 ![](./images/borderBox.png)
 * In this box model, the height and width of the box will remain fixed. The border thickness and padding will be included inside of the box, which means the overall dimensions of the box do not change.
 
+# Flow of HTML
+## Position
+### static - the default value (it does not need to be specified)
+![](./images/static.png)
+### relative
+This value allows you to position an element relative to its default static position on the web page.
+```
+.box-bottom {
+  background-color: DeepSkyBlue;
+  position: relative;
+  top: 20px;
+  left: 50px;
+}
+```
+![](./images/relative.png)
+### absolute
+When an element's position is set to absolute all other elements on the page will ignore the element and act like it is not present on the page. The element will be positioned relative to its closest positioned parent element.
+### fixed
+Fix the element position on the page.
 
+## Z-Index
+```
+.box-top {
+  background-color: Aquamarine;
+  position: relative;
+  z-index: 2;
+}
+
+.box-bottom {
+  background-color: DeepSkyBlue;
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  z-index: 1;
+}
+```
+* The `z-index` property controls how far "back" or how far "forward" an element should appear on the web page when elements overlap.
+* The larger value, the toper.
+
+## Inline Display
+Inline elements have a box that wraps tightly around their content
+```
+h1 {
+  display: inline;
+}
+```
+
+## Block Display
+Block-level elements fill the entire width of the page by default, but their width property can also be set. 
+```
+strong {
+  display: block;
+}
+```
+
+## Inline-Block Display
+Inline-block elements can appear next to each other and we can specify their dimensions using the width and height properties. Images are the best example of default inline-block elements.
+```
+.rectangle {
+  display: inline-block;
+  width: 200px;
+  height: 300px;
+}
+```
+* The difference with inline: can set the width and height.
+* The difference with block: can set in one line.
+
+## Float
+* The float property can be set to one of two values:
+  * left - this value will move, or float, elements as far left as possible.
+  * right - this value will move elements as far right as possible.
+```
+.box-bottom {
+  background-color: DeepSkyBlue;
+  float: right;
+}
+```
+* Floated elements must have a width specified, as in the example above. Otherwise, the element will assume the full width of its containing element, and changing the float value will not yield any visible results.
+
+## Clear
+The clear property specifies how elements should behave when they bump into each other on the page. It can take on one of the following values: left, right, both, none
+```
+div {
+  width: 200px;
+  float: left;
+}
+
+div.special {
+  clear: left;
+}
+```
+
+# Introduction to Color
