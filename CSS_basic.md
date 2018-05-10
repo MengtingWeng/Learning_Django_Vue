@@ -275,5 +275,104 @@ p.content-header {
 * The order is top & bottom, left & right
 
 ## Margins
+```
+p {
+  border: 1px solid aquamarine;
+  margin: 20px;
+}
+```
+* The property of margin is similar with padding
+* The `margin` property also lets you center content.
+```
+div {
+  margin: 0 auto;
+}
+```
+* In order to center an element, a width must be set for that element. Otherwise, the width of the div will be automatically set to the full width of its containing element, like the <body>, for example. It's not possible to center an element that takes up the full width of the page.
+
+## Margin Collapse
+* Horizontal margin are added but vertical margins are not.
+* Instead, the larger of the two vertical margins sets the distance between adjacent elements.
+![](./images/verticalMargin.png)
+
+
+## Minimum and Maximum Height and Width
+Ensure the minimum or maximum size of an element.
+```
+p {
+  min-width: 300px;
+  max-width: 600px;
+}
+```
+* In the example above, the width of all paragraphs will not shrink below 300 pixels, nor will the width exceed 600 pixels.
+```
+p {
+  min-height: 150px;
+  max-height: 300px;
+}
+```
+* Similar for `min-height` or `max-height`.
+
+## Overflow
+The size of the element is larger than its parent.
+```
+p {
+  overflow: scroll; 
+}
+```
+* The overflow property controls what happens to content that spills, or overflows, outside its box. It can be set to one of the following values:
+
+  * `hidden` - when set to this value, any content that overflows will be hidden from view.
+  * `scroll` - when set to this value, a scrollbar will be added to the element's box so that the rest of the content can be viewed by scrolling.
+  * `visible` - when set to this value, the overflow content will be displayed outside of the containing element. Note, this is the default value.
+
+## Resetting Defaults
+Reset the default stylesheet
+```
+* {
+  margin: 0;
+  padding: 0;
+}
+```
+## Visibility
+* `hidden` — hides an element.
+* `visible` — displays an element.
+```
+.future {
+  visibility: hidden;
+}
+```
+* What's the difference between `display: none` and `visibility: hidden`?
+  * An element with `display: none` will be completely removed from the web page.
+  * An element with `visibility: hidden`, however, will not be visible on the web page, but the space reserved for it will.
+  
+## Summary for Box Model
+* The box model comprises a set of properties used to create space around and between HTML elements.
+* The height and width of a content area can be set in pixels or percentage.
+* Borders surround the content area and padding of an element. The color, style, and thickness of a border can be set with CSS properties.
+* Padding is the space between the content area and the border. It can be set in pixels or percent.
+* Margin is the amount of spacing outside of an element's border.
+* Horizontal margins add, so the total space between the borders of adjacent elements is equal to the sum of the right margin of one element and the left margin of the adjacent element.
+* Vertical margins collapse, so the space between vertically adjacent elements is equal to the larger margin.
+margin: 0 auto horizontally centers an element inside of its parent content area, if it has a width.
+* The overflow property can be set to display, hide, or scroll, and dictates how HTML will render content that overflows its parent's content area.
+* The visibility property can hide or show elements.
+
+# Why Change the Box Model?
+Under this box model, the border thickness and padding are added to the overall dimensions of the box. This makes it difficult to accurately size a box. Over time, this can also make all of a web page's content difficult to position and manage.
+
+## Box Model: Content-Box
+The default box model used by the browser
+![](./images/contextBox.png)
+
+## Box Model: Border-Box
+Fortunately, we can reset the entire box model and specify a new one: `border-box`.
+```
+* {
+  box-sizing: border-box;
+}
+```
+![](./images/borderBox.png)
+* In this box model, the height and width of the box will remain fixed. The border thickness and padding will be included inside of the box, which means the overall dimensions of the box do not change.
 
 
