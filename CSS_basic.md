@@ -84,6 +84,7 @@ h1.special {
 }
 ```
 * Select only the `h1` elements that have a class of `special`
+* Do not have space between `h1` and `.special`
 
 ## Nested elements
 ```
@@ -98,8 +99,48 @@ h1.special {
 
 }
 ```
-* The nested `<li>` elements are selected
+* All nested `<li>` elements are selected
 * Notice the space between `.main-list` and `li`
+* There are four different combinators in CSS:
+  * descendant selector (space): all children.
+  * child selector (>) : immediate children.
+  * adjacent sibling selector (+) :  adjacent siblings.
+  * general sibling selector (~) : just sblings.
 
 
+## Important
+`!important` can be applied to specific attributes instead of full rules. 
+```
+p {
+  color: blue !important;
+}
 
+
+.main p {
+  color: red;
+}
+```
+* The `!important` flag is only useful when an element appears the same way 100% of the time. 
+* It's best to avoid !important altogether. 
+* If you ever see !important used (or are ever tempted to use it yourself) we strongly recommend reorganizing your CSS. 
+* Making your CSS more flexible will typically fix the immediate problem and make your code more maintainable in the long run.
+
+## Multiple Selectors
+```
+h1, 
+.menu {
+  font-family: Georgia;
+}
+```
+* Prevent to write repetive code
+
+## Summary for CSS selectors
+* CSS can change the look of HTML elements. In order to do this, CSS must select HTML elements, then apply styles to them.
+* CSS can select HTML elements by tag, class, or ID.
+* Multiple CSS classes can be applied to one HTML element.
+* Classes can be reusable, while IDs can only be used once.
+* IDs are more specific than classes, and classes are more specific than tags. That means IDs will override any styles from a class, and classes will override any styles from a tag selector.
+* Multiple selectors can be chained together to select an element. This raises the specificity, but can be necessary.
+* Nested elements can be selected by separating selectors with a space.
+* The !important flag will override any style, however it should almost never be used, as it is extremely difficult to override.
+* Multiple unrelated selectors can receive the same styles by separating the selector names with commas.
