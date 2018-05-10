@@ -1,3 +1,5 @@
+# CSS Setup and Selectors
+
 ## Inline style
 ```
 <p style="color: red; font-size: 20px;">I'm learning to code!</p>
@@ -144,3 +146,70 @@ h1,
 * Nested elements can be selected by separating selectors with a space.
 * The !important flag will override any style, however it should almost never be used, as it is extremely difficult to override.
 * Multiple unrelated selectors can receive the same styles by separating the selector names with commas.
+
+
+# CSS Visual Rules
+## Font Family
+* Default value: Times New Roman
+* Limit the number of typefaces used on a web page to 2 or 3. It will impact the load speed.
+* Use `""` when it contains more than one word.
+## Font Size
+```
+p {
+  font-size: 18px;
+}
+```
+## Font Weight
+```
+p {
+  font-weight: bold;
+}
+```
+* Options: `bold`, `normal`
+## Text Align
+```
+h1 {
+  text-align: right;
+}
+```
+* Options: `left`, `center`, `right`
+## Color
+* Foreground color
+* Background color
+```
+h1 {
+  color: red;
+  background-color: blue;
+}
+```
+## Opacity
+```
+.overlay {
+  opacity: 0.5;
+}
+```
+* 0 (invisible) ~ 1 (fully visible)
+
+## Background Image
+```
+.main-banner {
+  background-image: url("https://www.example.com/image.jpg");
+}
+```
+* Need to use URL
+
+
+# Some point that I conclude:
+* The name of css attribute always use lowercase and `-` to split different words.
+* For every CSS block, no need for `;`.
+* For every attribute inside CSS block, need `;`.
+
+## Summary for Visual Rules
+* CSS declarations are structured into property and value pairs.
+* The `font-family` property defines the typeface of an element.
+* `font-size` controls the size of text displayed.
+* `font-weight` defines how thin or thick text is displayed.
+* The `text-align` property places text in the `left`, `right`, or `center` of its parent container.
+* Text can have two different color attributes: `color` and `background-color`. `color` defines the color of the text, while `background-color` defines the color behind the text.
+* CSS can make an element transparent with the `opacity` property.
+* CSS can also set the background of an element to an image with the `background-image` property.
