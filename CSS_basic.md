@@ -216,4 +216,64 @@ h1 {
 
 # Introduction to the Box Model
 ## The Box Model
-[Visual representation of the box model](./images/boxModel.png)
+![](./images/boxModel.png)
+* Width and height — specifies the width and height of the content area.
+* Padding — specifies the amount of space between the content area and the border.
+* Border — specifies the thickness and style of the border surrounding the content area and padding.
+* Margin — specifies the amount of space between the border and the outside edge of the element.
+
+## Height and Width
+```
+p {
+  height: 80px;
+  width: 240px;
+}
+```
+* Pixels allow you to set the exact size of an element's box (width and height). 
+* When the width and height of an element are set in pixels, it will be the same size on all devices — an element that fills a laptop screen will overflow a mobile screen.
+
+## Borders
+A border is a line that surrounds an element. Borders can be set with a specific `width`, `style`, and `color`.
+```
+p {
+  border: 3px solid coral;
+}
+```
+* Width: `thin`, `medium`, or `thick` or `px`. Default is `medium`
+* Style: `none`, `dotted`, `dashed`, `solid`....
+
+## Border Radius
+Set the radius for border corner
+```
+div.container {
+  border: 3px solid rgb(22, 77, 100);
+  border-radius: 5px;
+}
+```
+* 100% means circle.
+
+## Padding
+The padding is the space between the contents of a box and the borders of a box.
+```
+p.content-header {
+  border: 3px solid coral;
+  padding: 10px;
+}
+```
+```
+p.content-header {
+  border: 3px solid grey;
+  padding: 6px 11px 4px 9px;
+}
+```
+* The order is top, right, bottom, left
+```
+p.content-header {
+  padding: 5px 10px;
+}
+```
+* The order is top & bottom, left & right
+
+## Margins
+
+
