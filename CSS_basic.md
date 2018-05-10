@@ -213,3 +213,7 @@ h1 {
 * Text can have two different color attributes: `color` and `background-color`. `color` defines the color of the text, while `background-color` defines the color behind the text.
 * CSS can make an element transparent with the `opacity` property.
 * CSS can also set the background of an element to an image with the `background-image` property.
+
+# Introduction to the Box Model
+## The Box Model
+[Visual representation of the box model](./images/boxModel.png)
