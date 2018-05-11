@@ -468,3 +468,31 @@ div.special {
 ```
 
 # Introduction to Color
+Colors in CSS can be described in three different ways:
+
+* Named colors — English words that describe colors, also called keyword colors
+* RGB — numeric values that describe a mix of red, green, and blue
+* HSL — numeric values that describe a mix of hue, saturation, and lightness
+
+## Hexadecimal
+```
+DarkSeaGreen: #8FBC8F
+Sienna:       #A0522D
+SaddleBrown:  #8B4513
+Brown:        #A52A2A
+Black:        #000000 or #000
+White:        #FFFFFF or #FFF
+Aqua:         #00FFFF or #0FF
+```
+## RGB Colors
+```
+h1 {
+  color: rgb(23, 45, 23);
+}
+```
+## Hue, Saturation, and Lightness
+```
+color: hsl(120, 60%, 70%);
+```
+# Typography
+
