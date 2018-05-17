@@ -334,3 +334,217 @@ let sum = (a, b) => {  // the curly brace opens a multiline function
 
 alert( sum(1, 2) ); // 3
 ```
+# Object
+## The basic of object
+An object can be created with figure brackets `{…}` with an optional list of properties. A property is a “key: value” pair, where `key` is a string (also called a “property name”), and `value` can be anything.
+```
+let user = new Object(); // "object constructor" syntax
+let user = {};  // "object literal" syntax
+```
+```
+let user = {     // an object
+  name: "John",  // by key "name" store value "John"
+  age: 30        // by key "age" store value 30
+};
+```
+* Access the property
+```
+// get fields of the object:
+alert( user.name ); // John
+alert( user.age ); // 30
+```
+* Add a property
+```
+user.isAdmin = true;
+```
+* Remove a property
+```
+delete user.age;
+```
+* multiword property names, but then they must be quoted
+```
+let user = {
+  name: "John",
+  age: 30,
+  "likes birds": true  // multiword property name must be quoted
+};
+```
+* Access multiword property, use `[""]`
+```
+alert(user["likes birds"]); // true
+```
+* Accessing a non-existing property just returns `undefined`.
+```
+let user = {};
+
+alert( user.noSuchProperty === undefined ); // true means "no such property"
+```
+* There also exists a special operator `in` to check for the existence of a property. return true or false.
+```
+"key" in object
+```
+ * To walk over all keys of an object, there exists a special form of the loop: for..in. This is a completely different thing from the for(;;) construct that we studied before.
+ ```
+ for(key in object) {
+  // executes the body for each key among object properties
+}
+ ```
+ * An object declared as `const` can be changed.
+ ```
+ const user = {
+  name: "John"
+};
+
+user.age = 25; // (*)
+
+alert(user.age); // 25
+ ```
+* The `const` would give an error if we try to set user to something else, for instance:
+```
+const user = {
+  name: "John"
+};
+
+// Error (can't reassign user)
+user = {
+  name: "Pete"
+};
+```
+* So `const` object can change the key or value inside the object but cannot reassign the object.
+
+* How to clone a object? Use loop or `Object.assign`
+```
+let user = { name: "John" };
+
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+// copies all properties from permissions1 and permissions2 into user
+Object.assign(user, permissions1, permissions2);
+
+// now user = { name: "John", canView: true, canEdit: true }
+```
+* If the receiving object (user) already has the same named property, it will be overwritten.
+* Copy a object instead of loop:
+```
+let user = {
+  name: "John",
+  age: 30
+};
+
+let clone = Object.assign({}, user);
+```
+## Object method
+### Method examples:
+```
+let user = {
+  name: "John",
+  age: 30
+};
+
+user.sayHi = function() {
+  alert("Hello!");
+};
+
+user.sayHi(); // Hello!
+```
+### Method shorthand:
+```
+// these objects do the same
+
+let user = {
+  sayHi: function() {
+    alert("Hello");
+  }
+};
+
+// method shorthand looks better, right?
+let user = {
+  sayHi() { // same as "sayHi: function()"
+    alert("Hello");
+  }
+};
+```
+The second one just delete `:` and `function`.
+### "this" in method
+```
+let user = {
+  name: "John",
+  age: 30,
+
+  sayHi() {
+    alert(this.name);
+  }
+
+};
+
+user.sayHi(); // John
+```
+* "this" is not bound
+```
+function sayHi() {
+  alert( this.name );
+}
+```
+* The value of this is evaluated during the run-time. And it can be anything.
+```
+let user = { name: "John" };
+let admin = { name: "Admin" };
+
+function sayHi() {
+  alert( this.name );
+}
+
+// use the same functions in two objects
+user.f = sayHi;
+admin.f = sayHi;
+
+// these calls have different this
+// "this" inside the function is the object "before the dot"
+user.f(); // John  (this == user)
+admin.f(); // Admin  (this == admin)
+
+admin['f'](); // Admin (dot or square brackets access the method – doesn't matter)
+```
+* Actually, we can call the function without an object at all, just return undefined.
+
+
+# Data type
+## Methods of primitives
+* In JavaScript there are 5 primitive types: undefined , null , boolean , string and number.
+* JavaScript allows us to work with primitives (strings, numbers etc) as if they were objects.
+### A primitive as an object
+* The solution to transform the frimitive variable into object:
+  * Primitives are still primitive. A single value, as desired.
+  * The language allows access to methods and properties of strings, numbers, booleans and symbols.
+  * When this happens, a special “object wrapper” is created that provides the extra functionality, and then is destroyed.
+```
+let str = "Hello";
+
+alert( str.toUpperCase() ); // HELLO
+```
+* The special primitives null and undefined are exceptions. They have no corresponding “wrapper objects” and provide no methods. In a sense, they are “the most primitive”.
+
+* An attempt to access a property of such value would give the error:
+```
+alert(null.test); // error
+```
+## Numbers
+```
+let billion = 1000000000;
+let billion = 1e9;  // 1 billion, literally: 1 and 9 zeroes
+let ms = 1e-6; // six zeroes to the left from 1
+
+//Hex, binary and octal numbers
+alert( 0xff ); // 255
+alert( 0xFF ); // 255 (the same, case doesn't matter)
+let a = 0b11111111; // binary form of 255
+let b = 0o377; // octal form of 255
+```
+* The method `num.toString(base)` returns a string representation of num in the numeral system with the given base.
+```
+let num = 255;
+
+alert( num.toString(16) );  // ff  hex
+alert( num.toString(2) );   // 11111111 binary
+```
