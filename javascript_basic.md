@@ -548,3 +548,233 @@ let num = 255;
 alert( num.toString(16) );  // ff  hex
 alert( num.toString(2) );   // 11111111 binary
 ```
+## String
+### Quotes
+Strings can be enclosed within either single quotes, double quotes or backticks:
+```
+let single = 'single-quoted';
+let double = "double-quoted";
+let backticks = `backticks`;
+```
+Single and double quotes are essentially the same. Backticks, however, allow us to embed any expression into the string, including function calls:
+```
+function sum(a, b) {
+  return a + b;
+}
+
+alert(`1 + 2 = ${sum(1, 2)}.`); // 1 + 2 = 3.
+```
+### Special character
+| Character | Description |
+| --------- | ----------- |
+| \b        | Backspace   |
+| \f        | Form feed   |
+| \n        | New line    |
+| \r        | Carriage return |
+| \uNNNN    | A unicode symbol with the hex code NNNN, for instance `\u00A9` – is a unicode for the copyright symbol `©`. It must be exactly 4 hex digits.|
+| \u{NNNNNNNN} | Some rare characters are encoded with two unicode symbols, taking up to 4 bytes. This long unicode requires braces around it.|
+```
+alert( "\u00A9" ); // ©
+alert( "\u{20331}" ); // 佫, a rare chinese hieroglyph (long unicode)
+alert( "\u{1F60D}" ); // 😍, a smiling face symbol (another long unicode)
+```
+* "escape character": `\`
+```
+alert( 'I\'m the Walrus!' ); // I'm the Walrus!
+```
+* More elegant solution, we could switch to double quotes or backticks instead:
+```
+alert( `I'm the Walrus!` ); // I'm the Walrus!
+```
+### String length
+```
+alert( `My\n`.length ); // 3
+```
+* Notice the length is 3 since `\n` just means one character.
+### Accessing character
+Use `[]` or `.charAt()` to access the character in the string
+```
+let str = `Hello`;
+
+// the first character
+alert( str[0] ); // H
+alert( str.charAt(0) ); // H
+
+// the last character
+alert( str[str.length - 1] ); // o
+```
+* The only difference between them is that if no character is found, `[]` returns `undefined`, and `charAt` returns an empty string:
+```
+let str = `Hello`;
+
+alert( str[1000] ); // undefined
+alert( str.charAt(1000) ); // '' (an empty string)
+```
+* Use for loop to access 
+```
+for (let char of "Hello") {
+  alert(char); // H,e,l,l,o (char becomes "H", then "e", then "l" etc)
+}
+
+```
+### Strings are immutable
+```
+let str = 'Hi';
+
+str[0] = 'h'; // error
+alert( str[0] ); // doesn't work
+```
+* The usual workaround is to create a whole new string and assign it to str instead of the old one.
+```
+let str = 'Hi';
+
+str = 'h' + str[1];  // replace the string
+
+alert( str ); // hi
+```
+### Change the case
+* `toLowerCase()`
+* `toUpperCase()`
+### Searching for a substring
+* `str.indexOf(substr, pos)`, not find return -1
+```
+let str = 'Widget with id';
+
+alert( str.indexOf('Widget') ); // 0, because 'Widget' is found at the beginning
+alert( str.indexOf('widget') ); // -1, not found, the search is case-sensitive
+
+alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with id)
+```
+* Also can define the start position
+```
+let str = 'Widget with id';
+
+alert( str.indexOf('id', 2) ) // 12
+```
+* `str.lastIndexOf(pos)`
+* `includes`, `startsWith`, `endsWith`
+
+### Getting a substring
+* slice: Include the start but not the end.
+```
+let str = "stringify";
+alert( str.slice(0, 5) ); // 'strin', the substring from 0 to 5 (not including 5)
+alert( str.slice(0, 1) ); // 's', from 0 to 1, but not including 1, so only character at 0
+```
+* substring: This is almost the same as slice, but it allows start to be greater than end.
+```
+let str = "stringify";
+
+// these are same for substring
+alert( str.substring(2, 6) ); // "ring"
+alert( str.substring(6, 2) ); // "ring"
+
+// ...but not for slice:
+alert( str.slice(2, 6) ); // "ring" (the same)
+alert( str.slice(6, 2) ); // "" (an empty string)
+```
+* substr: Returns the part of the string from start, with the given length.
+```
+let str = "stringify";
+alert( str.substr(2, 4) ); // ring, from the 2nd position get 4 characters
+```
+## Array
+### declare
+* Two methods
+```
+let arr = new Array();
+let arr = [];  //More popular
+let fruits = ["Apple", "Orange", "Plum"];
+```
+* We can replace an element:
+```
+fruits[2] = 'Pear'; // now ["Apple", "Orange", "Pear"]
+```
+* An array can store elements of any type.
+```
+// mix of values
+let arr = [ 'Apple', { name: 'John' }, true, function() { alert('hello'); } ];
+
+// get the object at index 1 and then show its name
+alert( arr[1].name ); // John
+
+// get the function at index 3 and run it
+arr[3](); // hello
+```
+### Methods pop/push, shift/unshift
+* Methods that work with the end of the array (`pop`, `push`):
+```
+let fruits = ["Apple", "Orange", "Pear"];
+
+alert( fruits.pop() ); // remove "Pear" and alert it
+
+alert( fruits ); // Apple, Orange
+```
+```
+let fruits = ["Apple", "Orange"];
+
+fruits.push("Pear");
+
+alert( fruits ); // Apple, Orange, Pear
+```
+* Methods that work with the beginning of the array (`shift`, `unshift`)
+```
+let fruits = ["Apple", "Orange", "Pear"];
+
+alert( fruits.shift() ); // remove Apple and alert it
+
+alert( fruits ); // Orange, Pear
+```
+```
+let fruits = ["Orange", "Pear"];
+
+fruits.unshift('Apple');
+
+alert( fruits ); // Apple, Orange, Pear
+```
+* Methods `push/pop` run fast, while `shift/unshift` are slow. 
+
+### Loop:
+* arr.length
+```
+let arr = ["Apple", "Orange", "Pear"];
+
+for (let i = 0; i < arr.length; i++) {
+  alert( arr[i] );
+}
+```
+* for and of
+```
+let fruits = ["Apple", "Orange", "Plum"];
+
+// iterates over array elements
+for (let fruit of fruits) {
+  alert( fruit );
+}
+```
+* for, of and key
+
+```
+let arr = ["Apple", "Orange", "Pear"];
+
+for (let key in arr) {
+  alert( arr[key] ); // Apple, Orange, Pear
+}
+```
+### A word about “length”
+```
+let fruits = [];
+fruits[123] = "Apple";
+
+alert( fruits.length ); // 124
+```
+* If we increase it manually, nothing interesting happens. But if we decrease it, the array is truncated. The process is irreversible, here’s the example:
+```
+let arr = [1, 2, 3, 4, 5];
+
+arr.length = 2; // truncate to 2 elements
+alert( arr ); // [1, 2]
+
+arr.length = 5; // return length back
+alert( arr[3] ); // undefined: the values do not return
+```
